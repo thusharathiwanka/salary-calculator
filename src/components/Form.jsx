@@ -20,7 +20,7 @@ const Form = () => {
 					<button className="remove-button button">
 						<img src="/assets/remove.png" alt="remove-icon" />
 					</button>
-					<div className="flex-center">
+					<div className="flex-center checkbox-container">
 						<input type="checkbox" id="epf-etf" name="epf-etf" />
 						<label htmlFor="epf-etf">EPF/ETF</label>
 					</div>

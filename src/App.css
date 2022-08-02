@@ -24,6 +24,7 @@
 	width: 2rem;
 	height: 2rem;
 	margin-left: 1rem;
+	margin-right: 1rem;
 }
 
 input[type="number"] {
@@ -84,8 +85,14 @@ input[type="checkbox"]:checked {
 	align-items: center;
 }
 
+.flex-start {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
 .container {
-	gap: 2rem;
+	gap: 1.5rem;
 	padding: 0 2rem;
 	min-height: 100vh;
 	max-width: 1440px;
@@ -179,6 +186,10 @@ form {
 	padding: 0.8rem;
 }
 
+.width-100 {
+	width: 100%;
+}
+
 @media screen and (max-width: 1000px) {
 	.container {
 		width: 100%;
@@ -200,5 +211,37 @@ form {
 @media screen and (max-width: 600px) {
 	.input-container {
 		flex-wrap: wrap;
+	}
+
+	.checkbox-container {
+		padding-bottom: 1rem;
+	}
+
+	input[type="number"] {
+		width: 85%;
+	}
+
+	input[type="checkbox"] {
+		margin-left: 0;
+	}
+
+	checkbox-container:nth-child(2n) {
+		flex-basis: 100%;
+	}
+
+	.remove-button {
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-width: 465px) {
+	.remove-button {
+		margin-bottom: 1rem;
+		margin-right: 1rem;
+		margin-left: 0;
+	}
+
+	input[type="number"] {
+		width: 100%;
 	}
 }
