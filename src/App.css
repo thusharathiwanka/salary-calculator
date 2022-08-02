@@ -1,16 +1,204 @@
-.App {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
+.button {
+	border: none;
+	outline: none;
+	background-color: transparent;
+	color: #0052ea;
+	font-size: 0.875rem;
+	font-weight: 500;
+	cursor: pointer;
 }
 
-.App-header {
-	background-color: #282c34;
+.button > .button-img {
+	padding-right: 0.4rem;
+}
+
+.input-container {
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	justify-content: flex-start;
+}
+
+.remove-button {
+	background-color: #efefef;
+	border-radius: 50%;
+	width: 2rem;
+	height: 2rem;
+	margin-left: 1rem;
+}
+
+input[type="number"] {
+	width: 60%;
+	padding: 0.8rem 1rem;
+	margin: 1rem 0;
+	border: #e0e0e0 1px solid;
+	border-radius: 4px;
+}
+
+input[type="number"]:focus {
+	outline: none;
+}
+
+input[type="checkbox"] {
+	position: relative;
+	width: 1.5em;
+	height: 1.5em;
+	background-color: white;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	appearance: none;
+	cursor: pointer;
+	margin-right: 1rem;
+	margin-left: 1.8rem;
+	transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+}
+
+input[type="checkbox"]::before {
+	position: absolute;
+	content: "";
+	display: block;
+	top: 1px;
+	left: 6px;
+	width: 7px;
+	height: 12px;
+	border-style: solid;
+	border-color: #ffffff;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+input[type="checkbox"]:checked {
+	color: #ffffff;
+	border-color: #0052ea;
+	background: #0052ea;
+}
+
+.flex-between {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.flex-center {
+	display: flex;
 	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+	align-items: center;
+}
+
+.container {
+	gap: 2rem;
+	padding: 0 2rem;
+	min-height: 100vh;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+.container > div,
+form {
+	min-height: 70vh;
+}
+
+.border {
+	border: 1px solid #e0e0e0;
+	border-radius: 8px;
+}
+
+.form {
+	background-color: #fafafa;
+	width: 55%;
+	padding: 2.5rem;
+}
+
+.result {
+	background-color: #ffffff;
+	width: 45%;
+	padding: 2.5rem 1rem;
+}
+
+.header {
+	padding-bottom: 2rem;
+}
+
+.heading {
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.body-text-semibold {
+	font-size: 1rem;
+	font-weight: 600;
+	padding-bottom: 0.5rem;
+}
+
+.body-text {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
+.body-text-small {
+	font-size: 0.75rem;
+	font-weight: 400;
+	color: #757575;
+}
+
+.body-text-semibold-lighter {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #757575;
+	padding: 2rem 0;
+}
+
+.padding-top {
+	padding-top: 1.5rem;
+}
+
+.divider {
+	background-color: #e0e0e0;
+	height: 1px;
+	border: none;
+	margin-top: 2rem;
+}
+
+.salary-details {
+	padding-bottom: 0.5rem;
+}
+
+.padding-left-right {
+	padding: 0 1rem;
+}
+
+.result-padding {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+.margin-top {
+	margin-top: 1.5rem;
+}
+
+.net-salary {
+	padding: 0.8rem;
+}
+
+@media screen and (max-width: 1000px) {
+	.container {
+		width: 100%;
+		flex-wrap: wrap;
+		padding: 2rem;
+	}
+
+	.form {
+		width: 100%;
+		min-height: auto;
+	}
+
+	.result {
+		width: 100%;
+		min-height: auto;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.input-container {
+		flex-wrap: wrap;
+	}
 }
