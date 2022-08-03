@@ -1,4 +1,10 @@
+import { useContext } from "react";
+
+import { SalaryContext } from "../contexts/SalaryContext";
+
 const Form = () => {
+	const { salary, setSalary } = useContext(SalaryContext);
+
 	return (
 		<form className="form border">
 			<div className="header flex-between">
@@ -10,7 +16,14 @@ const Form = () => {
 			</div>
 			<div className="basic-salary">
 				<h5 className="body-text-semibold">Basic Salary</h5>
-				<input type="number" name="basic-salary" id="basic-salary" className="body-text" />
+				<input
+					type="number"
+					name="basic-salary"
+					id="basic-salary"
+					className="body-text"
+					value={salary.basicSalary}
+					onChange={e => setSalary({ ...salary, basicSalary: e.target.value })}
+				/>
 			</div>
 			<div className="earnings">
 				<h5 className="body-text-semibold padding-top">Earnings</h5>
