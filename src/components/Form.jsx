@@ -54,11 +54,27 @@ const Form = () => {
 		setDeductions(newDeductions);
 	};
 
+	const resetForm = e => {
+		e.preventDefault();
+		setSalary({
+			basicSalary: "",
+			grossEarning: "",
+			grossDeduction: "",
+			netSalary: "",
+			employeeEPF: "",
+			employerEPF: "",
+			employerETF: "",
+			costToCompany: "",
+		});
+		setEarnings([{ amount: "", epfEtf: false }]);
+		setDeductions([{ amount: "" }]);
+	};
+
 	return (
 		<form className="form border">
 			<div className="header flex-between">
 				<h3 className="heading">Calculate Your Salary</h3>
-				<button className="flex-between button">
+				<button className="flex-between button" onClick={e => resetForm(e)}>
 					<img src="/assets/reset.png" alt="reset-icon" className="button-img" />
 					Reset
 				</button>
@@ -101,7 +117,10 @@ const Form = () => {
 						</div>
 					</div>
 				))}
-				<button className="flex-between button" onClick={e => addEarningRow(e)}>
+				<button
+					className={`flex-between button ${earnings.length <= 0 && `padding-top-empty`}`}
+					onClick={e => addEarningRow(e)}
+				>
 					<img src="/assets/plus.png" alt="plus-icon" className="button-img" />
 					Add New Allowance
 				</button>
@@ -125,7 +144,10 @@ const Form = () => {
 						</button>
 					</div>
 				))}
-				<button className="flex-between button" onClick={e => addDeductionRow(e)}>
+				<button
+					className={`flex-between button ${deductions.length <= 0 && `padding-top-empty`}`}
+					onClick={e => addDeductionRow(e)}
+				>
 					<img src="/assets/plus.png" alt="plus-icon" className="button-img" />
 					Add New Deduction
 				</button>
