@@ -3,29 +3,40 @@ import { useContext } from "react";
 import { SalaryContext } from "../contexts/SalaryContext";
 
 const Form = () => {
-	const { salary, setSalary, earnings, setEarnings, deductions, setDeductions } =
-		useContext(SalaryContext);
+	const {
+		salary,
+		setSalary,
+		earnings,
+		setEarnings,
+		deductions,
+		setDeductions,
+		calculateEarnings,
+		calculateDeductions,
+		calculateSalary,
+	} = useContext(SalaryContext);
 
 	const handleEarningsChange = (e, index) => {
 		const newEarnings = [...earnings];
-		newEarnings[index].amount = e.target.value;
+		newEarnings[index].amount = parseFloat(e.target.value);
 		setEarnings(newEarnings);
-		console.log(e.target.value);
-		console.log(earnings);
+		calculateEarnings();
+		calculateSalary();
 	};
 
 	const handleEpfEtfChange = index => {
 		const newEarnings = [...earnings];
 		newEarnings[index].epfEtf = !newEarnings[index].epfEtf;
 		setEarnings(newEarnings);
-		console.log(earnings);
+		calculateEarnings();
+		calculateSalary();
 	};
 
 	const handleDeductionsChange = (e, index) => {
 		const newDeductions = [...deductions];
-		newDeductions[index].amount = e.target.value;
+		newDeductions[index].amount = parseFloat(e.target.value);
 		setDeductions(newDeductions);
-		console.log(deductions);
+		calculateDeductions();
+		calculateSalary();
 	};
 
 	const addEarningRow = e => {
@@ -39,6 +50,8 @@ const Form = () => {
 		const newEarnings = [...earnings];
 		newEarnings.splice(index, 1);
 		setEarnings(newEarnings);
+		calculateEarnings();
+		calculateSalary();
 	};
 
 	const addDeductionRow = e => {
@@ -52,6 +65,8 @@ const Form = () => {
 		const newDeductions = [...deductions];
 		newDeductions.splice(index, 1);
 		setDeductions(newDeductions);
+		calculateDeductions();
+		calculateSalary();
 	};
 
 	const resetForm = e => {
@@ -59,6 +74,7 @@ const Form = () => {
 		setSalary({
 			basicSalary: "",
 			grossEarning: "",
+			epfAllowedEarnings: "",
 			grossDeduction: "",
 			netSalary: "",
 			employeeEPF: "",
@@ -87,7 +103,7 @@ const Form = () => {
 					id="basic-salary"
 					className="body-text"
 					value={salary.basicSalary}
-					onChange={e => setSalary({ ...salary, basicSalary: e.target.value })}
+					onChange={e => setSalary({ ...salary, basicSalary: parseFloat(e.target.value) })}
 				/>
 			</div>
 			<div className="earnings">
