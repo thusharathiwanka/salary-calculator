@@ -6,7 +6,7 @@ const SalaryContextProvider = ({ children }) => {
 	const [salary, setSalary] = useState({
 		basicSalary: "",
 		grossEarning: "",
-		epfAllowedEarnings: 0,
+		epfAllowedEarnings: "",
 		grossDeduction: "",
 		netSalary: "",
 		employeeEpf: "",
@@ -21,16 +21,17 @@ const SalaryContextProvider = ({ children }) => {
 		salary.epfAllowedEarnings = 0;
 		salary.grossEarning = earnings.reduce((total, earning) => {
 			if (earning.epfEtf) {
-				console.log(earning.amount);
 				salary.epfAllowedEarnings = salary.epfAllowedEarnings + earning.amount;
 			}
 
 			return total + earning.amount;
 		}, 0);
+		salary.grossEarning = parseInt(salary.grossEarning);
 	};
 
 	const calculateDeductions = () => {
 		salary.grossDeduction = deductions.reduce((total, deduction) => total + deduction.amount, 0);
+		salary.grossDeduction = parseInt(salary.grossDeduction);
 	};
 
 	const calculateSalary = () => {
@@ -41,6 +42,7 @@ const SalaryContextProvider = ({ children }) => {
 			salary.basicSalary + salary.grossEarning - (salary.grossDeduction + employeeEpf);
 		const costToCompany =
 			salary.basicSalary + salary.grossEarning + employerEpf + employerEtf - salary.grossDeduction;
+		console.log(salary);
 
 		setSalary({
 			...salary,
@@ -50,6 +52,9 @@ const SalaryContextProvider = ({ children }) => {
 			netSalary,
 			costToCompany,
 		});
+		localStorage.setItem("salary", JSON.stringify(salary));
+		localStorage.setItem("earnings", JSON.stringify(earnings));
+		localStorage.setItem("deductions", JSON.stringify(deductions));
 	};
 
 	return (

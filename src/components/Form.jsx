@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { SalaryContext } from "../contexts/SalaryContext";
 
@@ -14,6 +14,14 @@ const Form = () => {
 		calculateDeductions,
 		calculateSalary,
 	} = useContext(SalaryContext);
+
+	const [trigger, setTrigger] = useState(false);
+
+	useEffect(() => {
+		calculateEarnings();
+		calculateDeductions();
+		calculateSalary();
+	}, [trigger]);
 
 	const handleEarningsChange = (e, index) => {
 		const newEarnings = [...earnings];
@@ -50,8 +58,7 @@ const Form = () => {
 		const newEarnings = [...earnings];
 		newEarnings.splice(index, 1);
 		setEarnings(newEarnings);
-		calculateEarnings();
-		calculateSalary();
+		setTrigger(!trigger);
 	};
 
 	const addDeductionRow = e => {
@@ -65,8 +72,7 @@ const Form = () => {
 		const newDeductions = [...deductions];
 		newDeductions.splice(index, 1);
 		setDeductions(newDeductions);
-		calculateDeductions();
-		calculateSalary();
+		setTrigger(!trigger);
 	};
 
 	const resetForm = e => {
@@ -77,9 +83,9 @@ const Form = () => {
 			epfAllowedEarnings: "",
 			grossDeduction: "",
 			netSalary: "",
-			employeeEPF: "",
-			employerEPF: "",
-			employerETF: "",
+			employeeEpf: "",
+			employerEpf: "",
+			employerEtf: "",
 			costToCompany: "",
 		});
 		setEarnings([{ amount: "", epfEtf: false }]);
@@ -103,7 +109,10 @@ const Form = () => {
 					id="basic-salary"
 					className="body-text"
 					value={salary.basicSalary}
-					onChange={e => setSalary({ ...salary, basicSalary: parseFloat(e.target.value) })}
+					onChange={e => {
+						setSalary({ ...salary, basicSalary: parseInt(e.target.value) });
+						setTrigger(!trigger);
+					}}
 				/>
 			</div>
 			<div className="earnings">
@@ -125,8 +134,8 @@ const Form = () => {
 							<input
 								type="checkbox"
 								name="epfEtf"
-								value={earning.isIncluded}
-								checked={earning.isIncluded}
+								value={earning.epfEtf}
+								checked={earning.epfEtf}
 								onChange={() => handleEpfEtfChange(index)}
 							/>
 							<label htmlFor="epf-etf">EPF/ETF</label>
