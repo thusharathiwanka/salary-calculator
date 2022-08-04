@@ -51,9 +51,12 @@ const SalaryContextProvider = ({ children }) => {
 	 * Calculate employee EPF, employer EPF, employer ETF, net salary and cost to company
 	 */
 	const calculateSalary = () => {
-		const employeeEpf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.08;
-		const employerEpf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.12;
-		const employerEtf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.03;
+		let employeeEpf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.08;
+		let employerEpf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.12;
+		let employerEtf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.03;
+
+		if (!salary.epfAllowedEarnings) employeeEpf = employerEpf = employerEtf = 0;
+
 		const netSalary =
 			salary.basicSalary + salary.grossEarning - (salary.grossDeduction + employeeEpf);
 		const costToCompany =
