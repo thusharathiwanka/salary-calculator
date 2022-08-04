@@ -2,6 +2,10 @@ import { useContext, useEffect, useState } from "react";
 
 import { SalaryContext } from "../contexts/SalaryContext";
 
+/**
+ * Form component
+ * @returns {JSX.Element} form - salary input form
+ */
 const Form = () => {
 	const {
 		salary,
@@ -17,11 +21,15 @@ const Form = () => {
 
 	const [trigger, setTrigger] = useState(false);
 
+	/**
+	 * Trigger calculations
+	 */
 	useEffect(() => {
 		calculateEarnings();
 		calculateDeductions();
 		calculateSalary();
 		// saveToLocalStorage();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trigger]);
 
 	// useEffect(() => retrieveFromLocalStorage(), []);
@@ -39,6 +47,11 @@ const Form = () => {
 	// 		setDeductions(JSON.parse(localStorage.getItem("deductions")));
 	// };
 
+	/**
+	 * Handle earnings input change
+	 * @param {Event} e
+	 * @param {Number} index
+	 */
 	const handleEarningsChange = (e, index) => {
 		const newEarnings = [...earnings];
 		newEarnings[index].amount = e.target.value;
@@ -46,6 +59,10 @@ const Form = () => {
 		setTrigger(!trigger);
 	};
 
+	/**
+	 * Handle EPF/ETF checkbox input change
+	 * @param {Number} index
+	 */
 	const handleEpfEtfChange = index => {
 		const newEarnings = [...earnings];
 		newEarnings[index].epfEtf = !newEarnings[index].epfEtf;
@@ -53,6 +70,11 @@ const Form = () => {
 		setTrigger(!trigger);
 	};
 
+	/**
+	 * Handle deductions input change
+	 *  @param {Event} e
+	 * @param {Number} index
+	 */
 	const handleDeductionsChange = (e, index) => {
 		const newDeductions = [...deductions];
 		newDeductions[index].amount = e.target.value;
@@ -60,12 +82,21 @@ const Form = () => {
 		setTrigger(!trigger);
 	};
 
+	/**
+	 * Handle add new input to earnings
+	 * @param {Event} e
+	 */
 	const addEarningRow = e => {
 		e.preventDefault();
 		const newRow = { amount: "", epfEtf: false };
 		setEarnings([...earnings, newRow]);
 	};
 
+	/**
+	 * Handle remove input from earnings
+	 * @param {Event} e
+	 * @param {Number} index
+	 */
 	const removeEarningRow = (e, index) => {
 		e.preventDefault();
 		const newEarnings = [...earnings];
@@ -74,12 +105,21 @@ const Form = () => {
 		setTrigger(!trigger);
 	};
 
+	/**
+	 * Handle add new input to deductions
+	 * @param {Event} e
+	 */
 	const addDeductionRow = e => {
 		e.preventDefault();
 		const newRow = { amount: "" };
 		setDeductions([...deductions, newRow]);
 	};
 
+	/**
+	 * Handle remove input from deductions
+	 * @param {Event} e
+	 * @param {Number} index
+	 */
 	const removeDeductionRow = (e, index) => {
 		e.preventDefault();
 		const newDeductions = [...deductions];
@@ -88,6 +128,10 @@ const Form = () => {
 		setTrigger(!trigger);
 	};
 
+	/**
+	 * Reset form to initial values
+	 * @param {Event} e
+	 */
 	const resetForm = e => {
 		e.preventDefault();
 		setSalary({

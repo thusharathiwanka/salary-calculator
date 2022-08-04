@@ -2,6 +2,11 @@ import React, { createContext, useState } from "react";
 
 export const SalaryContext = createContext();
 
+/**
+ * Salary Context
+ * @param {} children
+ * @returns {React.Context.Provider} SalaryContext.Provider - salary context provider
+ */
 const SalaryContextProvider = ({ children }) => {
 	const [salary, setSalary] = useState({
 		basicSalary: "",
@@ -17,6 +22,9 @@ const SalaryContextProvider = ({ children }) => {
 	const [earnings, setEarnings] = useState([{ amount: "", epfEtf: false }]);
 	const [deductions, setDeductions] = useState([{ amount: "" }]);
 
+	/**
+	 * Calculate gross earning and EPF allowed earnings
+	 */
 	const calculateEarnings = () => {
 		salary.epfAllowedEarnings = 0;
 
@@ -29,6 +37,9 @@ const SalaryContextProvider = ({ children }) => {
 		}, 0);
 	};
 
+	/**
+	 * Calculate gross deductions
+	 */
 	const calculateDeductions = () => {
 		salary.grossDeduction = deductions.reduce(
 			(total, deduction) => total + parseFloat(deduction.amount) || 0,
@@ -36,6 +47,9 @@ const SalaryContextProvider = ({ children }) => {
 		);
 	};
 
+	/**
+	 * Calculate employee EPF, employer EPF, employer ETF, net salary and cost to company
+	 */
 	const calculateSalary = () => {
 		const employeeEpf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.08;
 		const employerEpf = (salary.epfAllowedEarnings + salary.basicSalary) * 0.12;

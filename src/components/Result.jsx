@@ -2,6 +2,10 @@ import { useContext } from "react";
 
 import { SalaryContext } from "../contexts/SalaryContext";
 
+/**
+ * Result component
+ * @returns {JSX.Element} div - results
+ */
 const Result = () => {
 	const { salary } = useContext(SalaryContext);
 
