@@ -21,30 +21,43 @@ const Form = () => {
 		calculateEarnings();
 		calculateDeductions();
 		calculateSalary();
+		// saveToLocalStorage();
 	}, [trigger]);
+
+	// useEffect(() => retrieveFromLocalStorage(), []);
+
+	// const saveToLocalStorage = () => {
+	// 	localStorage.setItem("salary", JSON.stringify(salary));
+	// 	localStorage.setItem("earnings", JSON.stringify(earnings));
+	// 	localStorage.setItem("deductions", JSON.stringify(deductions));
+	// };
+
+	// const retrieveFromLocalStorage = () => {
+	// 	localStorage.getItem("salary") && setSalary(JSON.parse(localStorage.getItem("salary")));
+	// 	localStorage.getItem("earnings") && setEarnings(JSON.parse(localStorage.getItem("earnings")));
+	// 	localStorage.getItem("deductions") &&
+	// 		setDeductions(JSON.parse(localStorage.getItem("deductions")));
+	// };
 
 	const handleEarningsChange = (e, index) => {
 		const newEarnings = [...earnings];
-		newEarnings[index].amount = parseFloat(e.target.value);
+		newEarnings[index].amount = e.target.value;
 		setEarnings(newEarnings);
-		calculateEarnings();
-		calculateSalary();
+		setTrigger(!trigger);
 	};
 
 	const handleEpfEtfChange = index => {
 		const newEarnings = [...earnings];
 		newEarnings[index].epfEtf = !newEarnings[index].epfEtf;
 		setEarnings(newEarnings);
-		calculateEarnings();
-		calculateSalary();
+		setTrigger(!trigger);
 	};
 
 	const handleDeductionsChange = (e, index) => {
 		const newDeductions = [...deductions];
-		newDeductions[index].amount = parseFloat(e.target.value);
+		newDeductions[index].amount = e.target.value;
 		setDeductions(newDeductions);
-		calculateDeductions();
-		calculateSalary();
+		setTrigger(!trigger);
 	};
 
 	const addEarningRow = e => {
@@ -108,9 +121,9 @@ const Form = () => {
 					name="basic-salary"
 					id="basic-salary"
 					className="body-text"
-					value={salary.basicSalary}
+					value={salary.basicSalary ? salary.basicSalary : ""}
 					onChange={e => {
-						setSalary({ ...salary, basicSalary: parseInt(e.target.value) });
+						setSalary({ ...salary, basicSalary: parseFloat(e.target.value) || 0 });
 						setTrigger(!trigger);
 					}}
 				/>
