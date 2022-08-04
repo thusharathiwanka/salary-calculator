@@ -93,10 +93,11 @@ input[type="checkbox"]:checked {
 
 .container {
 	gap: 1.5rem;
-	padding: 0 2rem;
-	min-height: 100vh;
+	padding: 2rem;
+	min-height: 80vh;
 	max-width: 1440px;
-	margin: 0 auto;
+	margin: 5.5rem auto;
+	align-items: stretch;
 }
 
 .container > div,
@@ -177,6 +178,10 @@ form {
 	padding: 0 1rem;
 }
 
+.padding-right {
+	padding-right: 0.8rem;
+}
+
 .result-padding {
 	padding-left: 2rem;
 	padding-right: 2rem;
@@ -199,6 +204,7 @@ form {
 		width: 100%;
 		flex-wrap: wrap;
 		padding: 2rem;
+		margin: 0 auto;
 	}
 
 	.form {

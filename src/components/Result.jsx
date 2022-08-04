@@ -13,19 +13,19 @@ const Result = () => {
 				<h6 className="body-text-semibold-lighter">Amount</h6>
 			</div>
 			<div className="salary-details body-text flex-between result-padding">
-				<p>Basic Salary</p>
+				<p className="padding-right">Basic Salary</p>
 				<p>{salary.basicSalary ? salary.basicSalary.toFixed(2) : "0.00"}</p>
 			</div>
 			<div className="salary-details body-text flex-between result-padding">
-				<p>Gross Earning</p>
+				<p className="padding-right">Gross Earning</p>
 				<p>{salary.grossEarning ? salary.grossEarning.toFixed(2) : "0.00"}</p>
 			</div>
 			<div className="salary-details body-text flex-between result-padding">
-				<p>Gross Deduction</p>
+				<p className="padding-right">Gross Deduction</p>
 				<p>{salary.grossDeduction ? salary.grossDeduction.toFixed(2) : "0.00"}</p>
 			</div>
 			<div className="salary-details body-text flex-between result-padding">
-				<p>Employee EPF (8%)</p>
+				<p className="padding-right">Employee EPF (8%)</p>
 				<p>{salary.employeeEpf ? salary.employeeEpf.toFixed(2) : "0.00"}</p>
 			</div>
 			<div className="net-salary body-text flex-between border margin-top">
@@ -38,15 +38,15 @@ const Result = () => {
 			</div>
 			<h6 className="body-text-semibold-lighter result-padding">Contribution from the Employer</h6>
 			<div className="salary-details body-text flex-between  result-padding">
-				<p>Employer EPF (12%)</p>
+				<p className="padding-right">Employer EPF (12%)</p>
 				<p>{salary.employerEpf ? salary.employerEpf.toFixed(2) : "0.00"}</p>
 			</div>
 			<div className="salary-details body-text flex-between result-padding">
-				<p>Employer ETF (3%)</p>
+				<p className="padding-right">Employer ETF (3%)</p>
 				<p>{salary.employerEtf ? salary.employerEtf.toFixed(2) : "0.00"}</p>
 			</div>
 			<div className="salary-details body-text flex-between padding-top result-padding">
-				<p>CTC (Cost to Company)</p>
+				<p className="padding-right">CTC (Cost to Company)</p>
 				<p>{salary.costToCompany ? salary.costToCompany.toFixed(2) : "0.00"}</p>
 			</div>
 		</div>
