@@ -28,24 +28,8 @@ const Form = () => {
 		calculateEarnings();
 		calculateDeductions();
 		calculateSalary();
-		// saveToLocalStorage();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trigger]);
-
-	// useEffect(() => retrieveFromLocalStorage(), []);
-
-	// const saveToLocalStorage = () => {
-	// 	localStorage.setItem("salary", JSON.stringify(salary));
-	// 	localStorage.setItem("earnings", JSON.stringify(earnings));
-	// 	localStorage.setItem("deductions", JSON.stringify(deductions));
-	// };
-
-	// const retrieveFromLocalStorage = () => {
-	// 	localStorage.getItem("salary") && setSalary(JSON.parse(localStorage.getItem("salary")));
-	// 	localStorage.getItem("earnings") && setEarnings(JSON.parse(localStorage.getItem("earnings")));
-	// 	localStorage.getItem("deductions") &&
-	// 		setDeductions(JSON.parse(localStorage.getItem("deductions")));
-	// };
 
 	/**
 	 * Handle earnings input change
